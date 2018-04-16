@@ -1,8 +1,14 @@
-# Github Readme
-This library is used to get GitHub readme content in HTML as well as in JSON format
+package main
 
-## How to use it
-```go
+import (
+	"context"
+	"fmt"
+	"golang.org/x/oauth2"
+
+	"github.com/Golang-Coach/github-readme"
+)
+
+func main() {
 
 	src := oauth2.StaticTokenSource(
 		&oauth2.Token{AccessToken: "<!-- Your github access token -->"},
@@ -11,9 +17,9 @@ This library is used to get GitHub readme content in HTML as well as in JSON for
 	httpClient := oauth2.NewClient(ctx, src)
 	githubClient := github.NewGithub(httpClient)
 
-	content, err := githubClient.GetReadme(ctx, "<!-- organization name -->", "<!-- Github repository name -->")
+	content, err := githubClient.GetReadme(ctx, "parnurzeal", "gorequest")
 
 	fmt.Println(content)
 	fmt.Println(err)
 
-```
+}
